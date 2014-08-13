@@ -140,7 +140,7 @@ bool IntervalTimer::allocate_SIT(uint16_t Period, bool scale, TIMid id) {
 // configuters a SIT's TIMER registers, etc and enables
 // interrupts, effectively starting the timer upon completion
 // ------------------------------------------------------------
-void IntervalTimer::start_SIT(uint16_t Period, bool scale) {
+void IntervalTimer::start_SIT(uint16_t Period, TimeScale scale) {
 
 	TIM_TimeBaseInitTypeDef timerInitStructure;
     NVIC_InitTypeDef nvicStructure;
@@ -175,7 +175,7 @@ void IntervalTimer::start_SIT(uint16_t Period, bool scale) {
 			prescaler = SIT_PRESCALERm;	// Set prescaler for 2Hz clock, .5ms period
 			break;
 		default:
-			scale == uSec;				// Default to microseconds
+			scale = uSec;				// Default to microseconds
 			prescaler = SIT_PRESCALERu;
 			break;
 	}
