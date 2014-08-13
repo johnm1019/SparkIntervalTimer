@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 #include "application.h"
 
 
-enum {uSec, hmSec};			// microseconds or half-milliseconds
+enum TimeScale {uSec, hmSec};			// microseconds or half-milliseconds
 
 #ifdef __cplusplus
 extern "C" {
