@@ -74,7 +74,7 @@ extern "C" void Wiring_TIM4_Interrupt_Handler_override()
 // and = 1-65535 microsecond (uSec)
 // or 1-65535 0.5ms increments (hmSec)
 // ------------------------------------------------------------
-bool IntervalTimer::beginCycles(void (*isrCallback)(), uint16_t Period, bool scale, TIMid id) {
+bool IntervalTimer::beginCycles(void (*isrCallback)(), uint16_t Period, TimeScale scale, TIMid id) {
 
 	// if this interval timer is already running, stop and deallocate it
 	if (status == TIMER_SIT) {
@@ -108,7 +108,7 @@ bool IntervalTimer::beginCycles(void (*isrCallback)(), uint16_t Period, bool sca
 // it's initialized and started with the specified value, and
 // the function returns true, otherwise it returns false
 // ------------------------------------------------------------
-bool IntervalTimer::allocate_SIT(uint16_t Period, bool scale, TIMid id) {
+bool IntervalTimer::allocate_SIT(uint16_t Period, TimeScale scale, TIMid id) {
 
 	if (id < NUM_SIT) {		// Allocate specified timer (id=TIMER2/3/4) or auto-allocate from pool (id=AUTO)
 		if (!SIT_used[id]) {
@@ -300,7 +300,7 @@ void IntervalTimer::interrupt_SIT(action ACT)
 // Set new period for the SIT without
 // removing the SIT.
 // ------------------------------------------------------------
-void IntervalTimer::resetPeriod_SIT(uint16_t newPeriod, bool scale)
+void IntervalTimer::resetPeriod_SIT(uint16_t newPeriod, TimeScale scale)
 {
 	TIM_TimeBaseInitTypeDef timerInitStructure;
 	TIM_TypeDef* TIMx;
